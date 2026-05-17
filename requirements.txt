@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pydub
+pyttsx3
+requests
+numpy
+python-multipart
