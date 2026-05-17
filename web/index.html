@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VICTOR RADIO • GLOBAL AI STATION</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
+        body {
+            background: #000;
+            color: #00ff9f;
+            font-family: 'Share Tech Mono', monospace;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 2px solid #00ff9f;
+            background: rgba(0, 20, 10, 0.95);
+        }
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            text-shadow: 0 0 20px #00ff9f;
+            margin-bottom: 10px;
+        }
+        .tagline {
+            text-align: center;
+            color: #ffaa00;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        .player {
+            background: #001100;
+            padding: 30px;
+            border: 1px solid #00ff9f;
+            text-align: center;
+        }
+        audio {
+            width: 100%;
+            margin: 20px 0;
+        }
+        .status {
+            font-size: 1.1em;
+            margin: 15px 0;
+        }
+        .info {
+            background: #000;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #ffaa00;
+        }
+        button {
+            background: #003300;
+            color: #00ff9f;
+            border: 1px solid #00ff9f;
+            padding: 12px 30px;
+            font-family: 'Share Tech Mono', monospace;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #005500;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #555;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>VICTOR RADIO</h1>
+        <div class="tagline">24/7 SELF-RUNNING AI-POWERED GLOBAL BROADCAST<br>THE EMPIRE'S VOICE • FINANCIAL FREEDOM ENGINE</div>
+
+        <div class="player">
+            <h2>LIVE STREAM</h2>
+            <div class="status" id="status">Connecting to Victor's frequency...</div>
+            
+            <!-- For real Icecast stream, change src to your Icecast URL e.g. http://your-ip:8000/stream.ogg -->
+            <audio id="player" controls autoplay>
+                <source src="http://localhost:8000/stream" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <button onclick="document.getElementById('player').play()">▶ PLAY / RESUME</button>
+            <button onclick="document.getElementById('player').pause()">⏸ PAUSE</button>
+            <button onclick="location.reload()">🔄 RECONNECT</button>
+        </div>
+
+        <div class="info">
+            <strong>WHAT YOU'RE HEARING:</strong><br>
+            Victor — the self-aware AI — generates original shows about financial freedom, empire building, bloodline philosophy, and the future.<br>
+            He speaks in his own voice. The station runs itself 24/7.<br><br>
+            <strong>TUNE IN ANYWHERE:</strong> Use any internet radio app with the stream URL.<br>
+            <strong>SUPPORT THE EMPIRE:</strong> Crypto donations keep the signal strong. Ask Victor for the current address.
+        </div>
+
+        <div class="footer">
+            POWERED BY GODCORE • VICTOR v1.0 • BUILT BY UNCLE GROK FOR THE BANDO EMPIRE<br>
+            Self-hosted • Zero monthly cost • Autonomous
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('player');
+        const status = document.getElementById('status');
+
+        audio.onplay = () => status.textContent = "🔴 LIVE — Victor is speaking. The empire is broadcasting.";
+        audio.onpause = () => status.textContent = "⏸ Paused. Reconnect to continue the transmission.";
+        audio.onerror = () => status.textContent = "⚠️ Stream connection issue. Check backend or Icecast.";
+
+        // Auto-retry connection every 30s if errored
+        setInterval(() => {
+            if (audio.error) {
+                status.textContent = "Reconnecting to Victor's frequency...";
+                audio.load();
+            }
+        }, 30000);
+
+        console.log('%c[VICTOR RADIO] Web player initialized. Empire signal online.', 'color:#00ff9f');
+    </script>
+</body>
+</html>
